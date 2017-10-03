@@ -1,0 +1,20 @@
+version: "2"
+services:
+  node:
+    image: "quay.io/kwiksand/hypepool:latest"
+    environment:
+    - NODE_ENV=production
+    volumes:
+    - ./config:/usr/src/app/config
+#    - ./:/usr/src/app
+    links:
+    - mongo
+    expose:
+      - "8080"
+  mongo:
+    image: mongo:3.0.4
+#    volumes:
+#      - /media/Docker/flask_api/mongodb
+    ports:
+      - "27017:27017"
+    command: --smallfiles --rest
